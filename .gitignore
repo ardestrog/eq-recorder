@@ -1,0 +1,26 @@
+# Оточення і кеш
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Дані користувача: записи, транскрипти, стан/чекпойнти, лог
+recordings/
+output/
+.state/
+app.log
+*.wav
+*.mp3
+
+# Ваги моделей живуть поза репо (~/.cache/huggingface, ~/.cache/whisper);
+# у models/ — лише README.
+models/*
+!models/README.md
+
+# Проміжний iconset (scripts/update_icon.sh). Сам resources/icon.icns
+# ТРЕКАЄТЬСЯ: без нього build_app.sh збирає бандл без іконки.
+*.iconset/
+
+# Local-only analysis notes (may contain recording excerpts and local paths)
+docs/AUDIT_*.md
+docs/audit_*/

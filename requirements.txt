@@ -1,0 +1,22 @@
+# Versions are pinned on purpose. The app runs in its own project-local venv,
+# so nothing but this file decides what it imports; update pins deliberately.
+openai-whisper==20250625
+mlx-whisper==0.4.3
+sounddevice==0.5.5
+# scipy 1.15.3 (arm64 wheel) ships a native module,
+# scipy/sparse/linalg/_propack/_spropack*.so, that dyld refuses to load
+# ("__DATA/__thread_bss ... offset field is not zero"). mlx_whisper imports
+# `from scipy import signal` (timing.py), which pulls that module in
+# transitively on every import, even though word timestamps (and PROPACK's
+# sparse SVD) are never used. 1.13.1 imports cleanly.
+scipy==1.13.1
+numpy==1.26.4
+pyobjc-framework-Cocoa==12.2.2
+Pillow==12.1.1
+
+# Transitive dependencies of openai-whisper, pinned separately: without pins
+# pip resolves the newest compatible releases (torch, numba, llvmlite)
+# instead of the combination this project is run with.
+torch==2.7.1
+numba==0.60.0
+llvmlite==0.43.0
